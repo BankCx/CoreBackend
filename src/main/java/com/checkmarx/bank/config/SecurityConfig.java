@@ -4,13 +4,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig {
 
     // Intentionally vulnerable - weak password encoder
     @Bean
@@ -18,25 +18,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder(4); // Intentionally using weak strength
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             // Intentionally vulnerable - disabling CSRF protection
-            .csrf().disable()
+            .csrf(csrf -> csrf.disable())
             // Intentionally vulnerable - overly permissive CORS
-            .cors().and()
+            .cors(cors -> cors.and())
             // Intentionally vulnerable - no proper authentication
-            .authorizeRequests()
-            .antMatchers("/**").permitAll()
+            .authorizeHttpRequests(authz -> authz
+                .requestMatchers("/**").permitAll()
+            )
             // Intentionally vulnerable - no proper session management
-            .and()
-            .sessionManagement()
-            .maximumSessions(1)
+            .sessionManagement(session -> session
+                .maximumSessions(1)
+            )
             // Intentionally vulnerable - no proper headers
-            .and()
-            .and()
-            .headers()
-            .frameOptions()
-            .disable();
+            .headers(headers -> headers
+                .frameOptions().disable()
+            );
+        
+        return http.build();
     }
 } 

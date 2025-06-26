@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.0</version> <!-- Intentionally using older version for SCA demo -->
+        <version>3.5.3</version>
         <relativePath/>
     </parent>
     
@@ -18,7 +18,7 @@
     <description>Core banking engine for Bank of CX</description>
     
     <properties>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <log4j.version>2.14.1</log4j.version> <!-- Intentionally vulnerable version -->
     </properties>
     
@@ -64,8 +64,8 @@
         <!-- API Documentation -->
         <dependency>
             <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-ui</artifactId>
-            <version>1.6.9</version>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.3.0</version>
         </dependency>
         
         <!-- Testing -->
@@ -94,13 +94,6 @@
             <groupId>com.thoughtworks.xstream</groupId>
             <artifactId>xstream</artifactId>
             <version>1.4.13</version>
-        </dependency>
-
-        <!-- Intentionally vulnerable - using vulnerable version of hutool-json -->
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-json</artifactId>
-            <version>5.8.10</version>
         </dependency>
     </dependencies>
     
