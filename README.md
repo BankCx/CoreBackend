@@ -1,1 +1,1 @@
-# Bank of CX - Core Banking Backend
+# Bank of Cx - Core Banking Backend
