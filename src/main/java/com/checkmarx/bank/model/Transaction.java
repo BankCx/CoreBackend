@@ -12,7 +12,6 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Intentionally vulnerable - no proper foreign key constraints
     @ManyToOne
     @JoinColumn(name = "from_account_id")
     private Account fromAccount;
@@ -21,19 +20,14 @@ public class Transaction {
     @JoinColumn(name = "to_account_id")
     private Account toAccount;
 
-    // Intentionally vulnerable - no proper validation annotations
     private BigDecimal amount;
 
-    // Intentionally vulnerable - no proper date validation
     private LocalDateTime timestamp;
 
-    // Intentionally vulnerable - no proper enum type
     private String type;
 
-    // Intentionally vulnerable - no proper encryption
     private String description;
 
-    // Intentionally vulnerable - no proper status tracking
     private String status;
 
     // Getters and Setters

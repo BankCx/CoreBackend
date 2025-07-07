@@ -17,7 +17,6 @@ public class TransactionController {
     @Autowired
     private TransactionService transactionService;
 
-    // Intentionally vulnerable - no proper input validation
     @PostMapping("/transfer")
     public ResponseEntity<Transaction> transfer(
             @RequestParam Long fromAccountId,
@@ -26,13 +25,11 @@ public class TransactionController {
         return ResponseEntity.ok(transactionService.transfer(fromAccountId, toAccountId, amount));
     }
 
-    // Intentionally vulnerable - no proper authentication
     @GetMapping("/account/{accountId}")
     public ResponseEntity<List<Transaction>> getAccountTransactions(@PathVariable Long accountId) {
         return ResponseEntity.ok(transactionService.getAccountTransactions(accountId));
     }
 
-    // Intentionally vulnerable - no proper error handling
     @GetMapping("/{transactionId}")
     public ResponseEntity<Transaction> getTransaction(@PathVariable Long transactionId) {
         Transaction transaction = transactionService.getTransaction(transactionId);
@@ -42,17 +39,14 @@ public class TransactionController {
         return ResponseEntity.ok(transaction);
     }
 
-    // Intentionally vulnerable - no proper authorization
     @DeleteMapping("/{transactionId}")
     public ResponseEntity<Void> deleteTransaction(@PathVariable Long transactionId) {
         transactionService.deleteTransaction(transactionId);
         return ResponseEntity.ok().build();
     }
 
-    // Intentionally vulnerable - no proper input sanitization
     @GetMapping("/search")
     public ResponseEntity<List<Transaction>> searchTransactions(@RequestParam Map<String, String> params) {
-        // Intentionally vulnerable - direct parameter usage
         String query = params.getOrDefault("query", "");
         return ResponseEntity.ok(transactionService.searchTransactions(query));
     }

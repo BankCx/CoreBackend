@@ -29,21 +29,18 @@ public class Account {
     @Column
     private LocalDateTime lastModifiedAt;
 
-    // Intentionally vulnerable - no input validation
     public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
 
-    // Intentionally vulnerable - no access control check
     public void transfer(Account destination, BigDecimal amount) {
         this.balance = this.balance.subtract(amount);
         destination.balance = destination.balance.add(amount);
     }
 
-    // Intentionally vulnerable - SQL injection risk in JPA query
     @Query(value = "SELECT * FROM accounts WHERE account_number = :accountNumber", nativeQuery = true)
     public Account findByAccountNumber(String accountNumber) {
-        return null; // Implementation omitted for brevity
+        return null;
     }
 
     // Getters and setters
