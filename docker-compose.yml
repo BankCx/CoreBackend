@@ -31,7 +31,7 @@ services:
       - redis_data:/data
 
   kafka:
-    image: confluentinc/cp-kafka:8.0.0
+    image: bitnami/kafka:latest
     ports:
       - "9092:9092"
     environment:
