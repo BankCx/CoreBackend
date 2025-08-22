@@ -1,0 +1,40 @@
+# Java/Maven
+target/
+*.jar
+*.war
+*.class
+.mvn/wrapper/maven-wrapper.jar
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# Documentation
+README.md
+*.md
+docs/
+
+# Logs
+*.log
+logs/
+
+# Testing
+.mvn/wrapper/maven-wrapper.jar
+
+# Development
+application-dev.properties
+application-local.properties
